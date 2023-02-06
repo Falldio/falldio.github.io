@@ -10,5 +10,9 @@
   "repository": "https://github.com/Falldio/falldio.github.io.git",
   "author": "Falldio <1031249495@qq.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  }
 }
