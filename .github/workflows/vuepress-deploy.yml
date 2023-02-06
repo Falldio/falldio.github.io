@@ -1,0 +1,52 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        fetch-depth: 0
+      
+    - name: Cache dependencies
+      uses: actions/cache@v3.2.4
+      id: yarn-cache
+      with:
+        path: |
+          **/node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+          
+    - name: Install dependencies
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
+      run: yarn --frozen-lockfile
+      
+    - name: Build VuePress
+      run: yarn docs:build
+      
+    - name: Deploy to GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v3.1.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTION_SECRET }}
+      with:
+        target_branch: gh-pages
+        build_dir: docs/.vuepress/dist
