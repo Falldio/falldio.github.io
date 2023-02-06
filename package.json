@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.9.8",
+    "@vuepress/plugin-blog": "^1.9.4",
+    "vuepress": "^1.9.8"
+  },
+  "name": "falldio.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Falldio/falldio.github.io.git",
+  "author": "Falldio <1031249495@qq.com>",
+  "license": "MIT",
+  "private": false
+}
