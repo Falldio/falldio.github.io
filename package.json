@@ -3,7 +3,8 @@
     "@vuepress/plugin-back-to-top": "^1.9.8",
     "@vuepress/plugin-blog": "^1.9.4",
     "@vuepress/theme-blog": "^2.3.3",
-    "vuepress": "^1.9.8"
+    "vuepress": "^1.9.8",
+    "vuepress-plugin-mathjax": "^1.2.8"
   },
   "name": "falldio.github.io",
   "version": "1.0.0",
@@ -15,5 +16,8 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
+  },
+  "dependencies": {
+    "markdown-it-footnote": "^3.0.3"
   }
 }
