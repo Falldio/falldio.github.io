@@ -15,7 +15,6 @@
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism!
 - [罪与罚](https://book.douban.com/subject/30316258/)：陀思妥耶夫斯基的代表作之一（我爱死了他的《白夜》和《卡拉马佐夫兄弟》），只是这本书似乎是民国的版本，希望能坚持下去。
 - [MySQL是怎样运行的](https://book.douban.com/subject/35231266/)：希望能掌握更多数据库底层原理。
-- [算法导论](https://book.douban.com/subject/20432061/)：配合其他几本技术书籍巩固算法知识。
 - [精通Git](https://book.douban.com/subject/27133267/)：看了The Missing Semester的Git部分，捡起来了很多忘掉的知识，计划以此写一篇博客。
 
 ## 我在听
