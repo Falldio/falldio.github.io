@@ -1,6 +1,6 @@
 # NOW!
 
-> updated: 2023-5-26
+> updated: 2023-6-1
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -12,7 +12,7 @@
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism!
-- [精通Git](https://book.douban.com/subject/27133267/)：看了The Missing Semester的Git部分，捡起来了很多忘掉的知识，计划以此写一篇博客。
+- [编程珠玑](https://book.douban.com/subject/34860300/): 好久之前买来没看的书😢总算捡起来了
 
 ## 我在听
 
