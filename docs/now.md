@@ -1,6 +1,6 @@
 # NOW!
 
-> updated: 2023-6-1
+> updated: 2023-6-5
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -12,7 +12,8 @@
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism!
-- [编程珠玑](https://book.douban.com/subject/34860300/): 好久之前买来没看的书😢总算捡起来了
+- [剑指offer](https://book.douban.com/subject/27008702/)：应该是最后一轮刷题，主要用来熟悉牛客网的刷题环境，后面最多也就是回顾了。
+- [深入浅出Docker](https://book.douban.com/subject/30486354/)：Docker的基本操作和原理。
 
 ## 我在听
 
