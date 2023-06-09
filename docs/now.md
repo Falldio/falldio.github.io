@@ -14,7 +14,7 @@
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism!
 - [剑指offer](https://book.douban.com/subject/27008702/)：应该是最后一轮刷题，主要用来熟悉牛客网的刷题环境，后面最多也就是回顾了。
-- [深入浅出Docker](https://book.douban.com/subject/30486354/)：Docker的基本操作和原理。
+- [图解HTTP](https://book.douban.com/subject/25863515/)：巩固HTTP的基础，后面还会看TCP/IP内容。
 - [现代操作系统](https://book.douban.com/subject/27096665/): 配合操作系统课程学习。
 
 ## 我在听
