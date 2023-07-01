@@ -1,6 +1,6 @@
 # NOW!
 
-> updated: 2023-6-8
+> updated: 2023-7-1
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -14,7 +14,6 @@
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism!
 - [剑指offer](https://book.douban.com/subject/27008702/)：应该是最后一轮刷题，主要用来熟悉牛客网的刷题环境，后面最多也就是回顾了。
-- [图解HTTP](https://book.douban.com/subject/25863515/)：巩固HTTP的基础，后面还会看TCP/IP内容。
 - [现代操作系统](https://book.douban.com/subject/27096665/): 配合操作系统课程学习。
 
 ## 我在听
@@ -23,6 +22,5 @@
 
 ## Misc
 
-- [MIT 6.824](https://pdos.csail.mit.edu/6.824/)：Distributed Systems.
 - [Leviosa](https://github.com/Falldio/Leviosa)：一个基于`wails`的RSS阅读器。
 - [Kokura-Beamer](https://github.com/Falldio/Kokura-Beamer)：未来可能会用到的学术汇报模板。
