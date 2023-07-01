@@ -14,7 +14,9 @@
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism!
 - [剑指offer](https://book.douban.com/subject/27008702/)：应该是最后一轮刷题，主要用来熟悉牛客网的刷题环境，后面最多也就是回顾了。
-- [现代操作系统](https://book.douban.com/subject/27096665/): 配合操作系统课程学习。
+- [现代操作系统](https://book.douban.com/subject/27096665/)。
+- [MySQL必知必会](https://book.douban.com/subject/3354490/)。
+- [有限与无限的游戏](https://book.douban.com/subject/25742296/)。
 
 ## 我在听
 
