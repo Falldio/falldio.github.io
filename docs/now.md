@@ -6,17 +6,17 @@
 
 ## 我在看
 
-- [操作系统 清华大学](https://www.bilibili.com/video/BV1uW411f72n/?spm_id_from=333.337.search-card.all.click): 根据小林Coding的推荐补充基础知识。
-- [计网课程](https://www.bilibili.com/video/BV1JV411t7ow/?spm_id_from=333.1007.top_right_bar_window_view_later.content.click&vd_source=158fcb5e91ac0542b6f2ceb3b5d19d20)：巩固计算机网络知识。
-- [SQL进阶](https://www.bilibili.com/video/BV1UE41147KC/?spm_id_from=333.788.top_right_bar_window_view_later.content.click&vd_source=158fcb5e91ac0542b6f2ceb3b5d19d20)：一些MySQL的基本操作和tricks。
+- [MIT 6.824](https://www.bilibili.com/video/BV1R7411t71W/?spm_id_from=333.337.search-card.all.click&vd_source=158fcb5e91ac0542b6f2ceb3b5d19d20)
+- [MIT 6.828](https://pdos.csail.mit.edu/6.828/2018/schedule.html)
+- [CS144](https://cs144.github.io/)
 
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism!
 - [剑指offer](https://book.douban.com/subject/27008702/)：应该是最后一轮刷题，主要用来熟悉牛客网的刷题环境，后面最多也就是回顾了。
 - [现代操作系统](https://book.douban.com/subject/27096665/)。
-- [MySQL必知必会](https://book.douban.com/subject/3354490/)。
 - [有限与无限的游戏](https://book.douban.com/subject/25742296/)。
+- [Unix网络编程 卷1：套接字联网API](https://book.douban.com/subject/26434583/)
 
 ## 我在听
 
