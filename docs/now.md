@@ -6,9 +6,9 @@
 
 ## 我在看
 
-- [MIT 6.824](https://www.bilibili.com/video/BV1R7411t71W/?spm_id_from=333.337.search-card.all.click&vd_source=158fcb5e91ac0542b6f2ceb3b5d19d20)
-- [MIT 6.828](https://pdos.csail.mit.edu/6.828/2018/schedule.html)
-- [CS144](https://cs144.github.io/)
+- [MIT 6.824](https://www.bilibili.com/video/BV1R7411t71W/?spm_id_from=333.337.search-card.all.click&vd_source=158fcb5e91ac0542b6f2ceb3b5d19d20): Distributed Systems.
+- [MIT 6.828](https://pdos.csail.mit.edu/6.828/2018/schedule.html): Operating System Engineering.
+- [CS144](https://cs144.github.io/): Introduction to Computer Networking.
 
 ## 我在读
 
