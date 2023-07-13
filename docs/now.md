@@ -1,6 +1,6 @@
 # NOW!
 
-> updated: 2023-7-10
+> updated: 2023-7-12
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -13,10 +13,10 @@
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
-- [剑指offer](https://book.douban.com/subject/27008702/)：应该是最后一轮刷题，主要用来熟悉牛客网的刷题环境，后面最多也就是回顾了。
-- [有限与无限的游戏](https://book.douban.com/subject/25742296/)。
+- [有限与无限的游戏](https://book.douban.com/subject/25742296/)
 - [Unix网络编程 卷1：套接字联网API](https://book.douban.com/subject/26434583/)
 - [Go Web编程](https://book.douban.com/subject/27204133/)
+- [事务信息系统：并发控制与恢复的理论、算法与实践](https://book.douban.com/subject/1503812/)
 
 ## 我在听
 
