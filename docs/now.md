@@ -13,10 +13,10 @@
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
-- [有限与无限的游戏](https://book.douban.com/subject/25742296/)
 - [Unix网络编程 卷1：套接字联网API](https://book.douban.com/subject/26434583/)
 - [Go Web编程](https://book.douban.com/subject/27204133/)
 - [事务信息系统：并发控制与恢复的理论、算法与实践](https://book.douban.com/subject/1503812/)
+- [南北战争三百年：中国4—6世纪的军事与政权](https://book.douban.com/subject/28135034/)
 
 ## 我在听
 
