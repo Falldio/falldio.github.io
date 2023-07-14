@@ -1,6 +1,6 @@
 # NOW!
 
-> updated: 2023-7-12
+> updated: 2023-7-14
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -14,9 +14,9 @@
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
 - [Unix网络编程 卷1：套接字联网API](https://book.douban.com/subject/26434583/)
-- [Go Web编程](https://book.douban.com/subject/27204133/)
 - [事务信息系统：并发控制与恢复的理论、算法与实践](https://book.douban.com/subject/1503812/)
 - [南北战争三百年：中国4—6世纪的军事与政权](https://book.douban.com/subject/28135034/)
+- [图解密码技术](https://book.douban.com/subject/26822106/)
 
 ## 我在听
 
