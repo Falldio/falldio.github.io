@@ -1,6 +1,6 @@
 # NOW!
 
-> updated: 2023-7-25
+> updated: 2023-7-26
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -14,10 +14,9 @@
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
-- [事务信息系统：并发控制与恢复的理论、算法与实践](https://book.douban.com/subject/1503812/)
 - [图解密码技术](https://book.douban.com/subject/26822106/)
-- [秦汉魏晋史探微](https://book.douban.com/subject/6311230/)
 - [MySQL技术内幕：InnoDB存储引擎](https://book.douban.com/subject/24708143/)
+- [达摩流浪者](https://book.douban.com/subject/3151990/)
 
 ## 我在听
 
