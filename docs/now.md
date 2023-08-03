@@ -1,6 +1,6 @@
 # NOW!
 
-> updated: 2023-7-31
+> Updated: 2023-8-2
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -14,9 +14,8 @@
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
-- [高性能MySQL](https://book.douban.com/subject/23008813/)
-- [Go语言设计与实现](https://draveness.me/golang/)
 - [文明的故事2：希腊的生活](https://book.douban.com/subject/30385553/)
+- [Go语言实战](https://book.douban.com/subject/27015617/)
 
 ## 我在听
 
