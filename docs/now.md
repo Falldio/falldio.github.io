@@ -15,7 +15,7 @@
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
 - [文明的故事2：希腊的生活](https://book.douban.com/subject/30385553/)
-- [Go语言核心编程](https://book.douban.com/subject/30351288/)
+- [操作系统导论](https://book.douban.com/subject/33463930/?_dtcc=1)
 
 ## 我在听
 
