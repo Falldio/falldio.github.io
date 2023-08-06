@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2023-8-3
+> Updated: 2023-8-6
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -14,8 +14,8 @@
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
-- [文明的故事2：希腊的生活](https://book.douban.com/subject/30385553/)
 - [操作系统导论](https://book.douban.com/subject/33463930/?_dtcc=1)
+- [悠悠岁月](https://book.douban.com/subject/4228442/)
 
 ## 我在听
 
