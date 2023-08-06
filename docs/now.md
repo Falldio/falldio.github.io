@@ -15,7 +15,8 @@
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
 - [操作系统导论](https://book.douban.com/subject/33463930/?_dtcc=1)
-- [悠悠岁月](https://book.douban.com/subject/4228442/)
+- [马桥词典](https://book.douban.com/subject/30255027/)
+- [图解TCP/IP](https://book.douban.com/subject/24737674/)
 
 ## 我在听
 
