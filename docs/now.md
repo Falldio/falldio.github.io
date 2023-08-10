@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2023-8-9
+> Updated: 2023-8-10
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -15,7 +15,7 @@
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
 - [操作系统导论](https://book.douban.com/subject/33463930/?_dtcc=1)
-- [当食物成为慰藉：善待自己，重塑大脑，告别情绪性进食](https://book.douban.com/subject/36115215/?_dtcc=1)
+- [浮出历史地表：现代妇女文学研究](https://book.douban.com/subject/30147095/)
 
 ## 我在听
 
