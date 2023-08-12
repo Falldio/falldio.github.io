@@ -6,7 +6,7 @@ location: 武汉
 tags: 
     - 分布式系统
     - Go
-summary: 6.5840/6.824（分布式系统）Lab 1，实现一个简单的MapReduce系统。
+summary: 6.5840 / 6.824（分布式系统）Lab 1，实现一个简单的MapReduce系统。
 ---
 
 > **NOTE**：本文为6.824（分布式系统）Lab 1的回顾，实验要求见[这里](https://pdos.csail.mit.edu/6.824/labs/lab-mr.html)。因为要遵守课程的**Collaboration Policy**，所以本文不会分享任何实现细节的代码。
