@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2023-8-10
+> Updated: 2023-8-12
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -10,12 +10,13 @@
 - [MIT 6.828](https://pdos.csail.mit.edu/6.828/2018/schedule.html): Operating System Engineering.
 - [CS144](https://cs144.github.io/): Introduction to Computer Networking.
 - [我们的星球](https://www.bilibili.com/video/BV1oJ41137oE/?spm_id_from=333.337.search-card.all.click&vd_source=158fcb5e91ac0542b6f2ceb3b5d19d20)
+- [MIT 6.001](https://ocw.mit.edu/courses/6-001-structure-and-interpretation-of-computer-programs-spring-2005/)：Structure And Interpretation Of Computer Programs.
 
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
-- [操作系统导论](https://book.douban.com/subject/33463930/?_dtcc=1)
-- [浮出历史地表：现代妇女文学研究](https://book.douban.com/subject/30147095/)
+- [计算机程序的构造和解释](https://book.douban.com/subject/1148282/)
+- [清代旅蒙商述略](https://book.douban.com/subject/26419408/)
 
 ## 我在听
 
