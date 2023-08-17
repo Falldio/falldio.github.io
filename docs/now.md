@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2023-8-12
+> Updated: 2023-8-17
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -15,8 +15,9 @@
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
-- [计算机程序的构造和解释](https://book.douban.com/subject/1148282/)
-- [清代旅蒙商述略](https://book.douban.com/subject/26419408/)
+- [Computer Systems: A Programmer's Perspective](https://book.douban.com/subject/27000879/)
+- [无穷的开始：世界进步的本源](https://book.douban.com/subject/33406348/)
+- [第一本Docker书](https://book.douban.com/subject/26780404/)
 
 ## 我在听
 
