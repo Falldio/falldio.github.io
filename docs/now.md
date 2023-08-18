@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2023-8-17
+> Updated: 2023-8-18
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -16,12 +16,11 @@
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
 - [Computer Systems: A Programmer's Perspective](https://book.douban.com/subject/27000879/)
-- [无穷的开始：世界进步的本源](https://book.douban.com/subject/33406348/)
-- [第一本Docker书](https://book.douban.com/subject/26780404/)
+- [烧纸](https://book.douban.com/subject/30441551/?_dtcc=1)
 
 ## 我在听
 
-- [宇多田光](https://www.utadahikaru.jp/en/)：Can you give me one last kiss😭😭😭
+- [宇多田光](https://www.utadahikaru.jp/en/)：Can you give me one last kiss 😭😭😭
 
 ## Misc
 
