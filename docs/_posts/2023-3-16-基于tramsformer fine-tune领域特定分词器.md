@@ -80,14 +80,10 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/
 
 当你安装完成后，打开shell，应该已经能发现一些不同：你的当前命令前出现了`(base)`字样，这意味着现在我们处于一个名为base的**虚拟环境**。*虚拟环境的概念我们下一小节会简单介绍*。
 
-如果你仍然不放心，我们可以确认一下Anaconda集成的Python和Conda是否已经安装👇：
-
-![](/Users/liucheng/Desktop/截屏2023-03-16 17.59.51.png)
-
 如前所述，Anaconda是一个Python和R语言的发行版本，在安装过程中它会：
 
 1. 自动安装一个Python作为其默认的Python版本。
-2. 自动安装Conda作为包管理工具（*包管理工具这一概念我相信你已经很熟悉了，因此不赘言它的概念和好处。如果你还不熟悉的话，可以查看一些包管理器的官网，它们的介绍页面应该有更严谨翔实的说法，比如Python的[pip](https://pypi.org/project/pip/)、NodeJS的[npm](https://www.npmjs.com/)、[yarn](https://www.yarnpkg.cn/)，MacOS的[homebrew](https://brew.sh/)，Windows的[winget](https://learn.microsoft.com/zh-cn/windows/package-manager/winget/)、[chocolatey](https://chocolatey.org/)和[scoop](https://scoop.sh/)等*）。
+2. 自动安装Conda作为包管理工具（*包管理工具这一概念我相信你已经很熟悉了，因此不赘言它的概念和好处。如果你还不熟悉的话，可以查看一些包管理器的官网，它们的介绍页面应该有更严谨翔实的说法，比如Python的[pip](https://pypi.org/project/pip/)、NodeJS的[npm](https://www.npmjs.com/)、[yarn](https://www.yarnpkg.cn/)，MacOS的[homebrew](https://brew.sh/)，Windows的[winget](https://learn.microsoft.com/zh-cn/windows/package-manager/winget/)、[chocolatey](https://chocolatey.org/)和[scoop](https://scoop.sh/)等*）。
 3. 自动创建一个名为base的Python虚拟环境，作为其默认的Python虚拟环境。
 
 ### HanLP的配置
