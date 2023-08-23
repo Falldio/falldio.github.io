@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2023-8-18
+> Updated: 2023-8-23
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -26,3 +26,4 @@
 
 - [Leviosa](https://github.com/Falldio/Leviosa)：一个基于`wails`的RSS阅读器。
 - [Kokura-Beamer](https://github.com/Falldio/Kokura-Beamer)：未来可能会用到的学术汇报模板。
+- [Kache](https://github.com/Falldio/Kache)：分布式缓存服务。
