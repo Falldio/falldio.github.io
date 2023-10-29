@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2023-10-19
+> Updated: 2023-10-29
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -17,8 +17,7 @@
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
 - [Computer Systems: A Programmer's Perspective](https://book.douban.com/subject/27000879/)
 - [国富论](https://book.douban.com/subject/26921951/)
-- [云计算架构技术与实践](https://book.douban.com/subject/26883690/)
-- [天公不语对枯棋](https://book.douban.com/subject/26593842/)
+- [OpenStack设计与实现](https://book.douban.com/subject/35169071/)
 
 ## 我在听
 
@@ -26,6 +25,5 @@
 
 ## Misc
 
-- [Leviosa](https://github.com/Falldio/Leviosa)：一个基于`wails`的RSS阅读器。
 - [Kokura-Beamer](https://github.com/Falldio/Kokura-Beamer)：未来可能会用到的学术汇报模板。
 - [Kache](https://github.com/Falldio/Kache)：分布式缓存服务。
