@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2023-10-29
+> Updated: 2023-11-12
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -16,8 +16,8 @@
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
 - [Computer Systems: A Programmer's Perspective](https://book.douban.com/subject/27000879/)
-- [国富论](https://book.douban.com/subject/26921951/)
 - [OpenStack设计与实现](https://book.douban.com/subject/35169071/)
+- [UNIX环境高级编程](https://book.douban.com/subject/25900403/)
 
 ## 我在听
 
