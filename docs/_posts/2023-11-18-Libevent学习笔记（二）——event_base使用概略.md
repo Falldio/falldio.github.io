@@ -1,5 +1,5 @@
 ---
-title: Libevent学习笔记（一）—— event_base使用概略
+title: Libevent学习笔记（二）—— event_base使用概略
 date: 2023-11-18
 author: Falldio
 location: 武汉
