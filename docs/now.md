@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2023-12-04
+> Updated: 2023-12-09
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -11,13 +11,17 @@
 - [CS144](https://cs144.github.io/): Introduction to Computer Networking.
 - [我们的星球](https://www.bilibili.com/video/BV1oJ41137oE/?spm_id_from=333.337.search-card.all.click&vd_source=158fcb5e91ac0542b6f2ceb3b5d19d20)
 - [MIT 6.001](https://ocw.mit.edu/courses/6-001-structure-and-interpretation-of-computer-programs-spring-2005/)：Structure And Interpretation Of Computer Programs.
+- [Scavengers Reign](https://movie.douban.com/subject/35932858/)
 
 ## 我在读
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
 - [Computer Systems: A Programmer's Perspective](https://book.douban.com/subject/27000879/)
-- [数据密集型应用系统设计](https://book.douban.com/subject/30329536/)
-- [Everything You Always Wanted to Know About Mathematics](https://www.math.cmu.edu/~jmackey/151_128/bws_book.pdf)
+- [Everything You Always Wanted To Know About Mathematics](https://www.math.cmu.edu/~jmackey/151_128/bws_book.pdf)
+- [书读完了](https://book.douban.com/subject/2156168/)
+- [卡拉马佐夫兄弟](https://book.douban.com/subject/25887924/)
+- [流畅的Python](https://book.douban.com/subject/27028517/)
+- [分布式系统原理与范型](https://book.douban.com/subject/3108801/)
 
 ## 我在听
 
