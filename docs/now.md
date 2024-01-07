@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2023-12-31
+> Updated: 2024-1-7
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -20,6 +20,7 @@
 ## 我在听
 
 - [宇多田光](https://www.utadahikaru.jp/en/)：Can you give me one last kiss 😭😭😭
+- [Lex Fridman Podcast](https://www.youtube.com/playlist?list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4)
 
 ## Misc
 
