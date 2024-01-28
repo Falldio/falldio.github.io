@@ -1,6 +1,6 @@
 # NOW!
 
-> Updated: 2024-1-21
+> Updated: 2024-1-28
 
 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 
@@ -13,9 +13,7 @@
 
 - [沉思录](https://book.douban.com/subject/2359003/)：I never get enough Stoicism.
 - [Everything You Always Wanted To Know About Mathematics](https://www.math.cmu.edu/~jmackey/151_128/bws_book.pdf)
-- [卡拉马佐夫兄弟](https://book.douban.com/subject/25887924/)
 - 楞伽经
-- [陆犯焉识](https://book.douban.com/subject/6880158/)
 
 ## 我在听
 
