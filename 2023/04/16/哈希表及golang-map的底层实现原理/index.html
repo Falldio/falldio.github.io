@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>哈希表及Golang map的底层实现原理 | Falldio</title>
+    <meta name="generator" content="VuePress 1.9.8">
+    
+    <meta name="description" content="哈希表是普通数组概念的一种推广，可以以键值对的形式存储数据，类似于数组通过索引值访问数组元素。本文将介绍哈希表的基本概念、哈希冲突的解决手段以及Golang中map的实现原理。">
+    
+    <link rel="preload" href="/assets/css/0.styles.be17102d.css" as="style"><link rel="preload" href="/assets/js/app.d39313cf.js" as="script"><link rel="preload" href="/assets/js/6.42180b02.js" as="script"><link rel="preload" href="/assets/js/3.8f3d13df.js" as="script"><link rel="preload" href="/assets/js/25.8e67c3c4.js" as="script"><link rel="prefetch" href="/assets/js/10.8c83c10a.js"><link rel="prefetch" href="/assets/js/11.d7a429d4.js"><link rel="prefetch" href="/assets/js/12.d5b83dfa.js"><link rel="prefetch" href="/assets/js/13.c37c1db1.js"><link rel="prefetch" href="/assets/js/14.50b8f897.js"><link rel="prefetch" href="/assets/js/15.336adb9a.js"><link rel="prefetch" href="/assets/js/16.098bd5e3.js"><link rel="prefetch" href="/assets/js/17.2629e521.js"><link rel="prefetch" href="/assets/js/18.faecc1fa.js"><link rel="prefetch" href="/assets/js/19.ccf196e2.js"><link rel="prefetch" href="/assets/js/20.286ed044.js"><link rel="prefetch" href="/assets/js/21.a5f0b09f.js"><link rel="prefetch" href="/assets/js/22.e29fc34d.js"><link rel="prefetch" href="/assets/js/23.031fddf0.js"><link rel="prefetch" href="/assets/js/24.48308ecb.js"><link rel="prefetch" href="/assets/js/26.57d1bd9d.js"><link rel="prefetch" href="/assets/js/27.93771dfa.js"><link rel="prefetch" href="/assets/js/28.846229af.js"><link rel="prefetch" href="/assets/js/29.11b86f9d.js"><link rel="prefetch" href="/assets/js/30.8db1e722.js"><link rel="prefetch" href="/assets/js/31.22373972.js"><link rel="prefetch" href="/assets/js/32.6677dbf4.js"><link rel="prefetch" href="/assets/js/33.4c7d0e02.js"><link rel="prefetch" href="/assets/js/34.9dd4c6f6.js"><link rel="prefetch" href="/assets/js/35.996c56c9.js"><link rel="prefetch" href="/assets/js/36.b641b47c.js"><link rel="prefetch" href="/assets/js/37.03075320.js"><link rel="prefetch" href="/assets/js/38.c7377078.js"><link rel="prefetch" href="/assets/js/39.52583690.js"><link rel="prefetch" href="/assets/js/4.37afe1ad.js"><link rel="prefetch" href="/assets/js/40.f0306436.js"><link rel="prefetch" href="/assets/js/41.a57199ea.js"><link rel="prefetch" href="/assets/js/42.c568f54e.js"><link rel="prefetch" href="/assets/js/43.c9486ab2.js"><link rel="prefetch" href="/assets/js/44.14db9ef7.js"><link rel="prefetch" href="/assets/js/5.2a166dd4.js"><link rel="prefetch" href="/assets/js/7.1d0c9328.js"><link rel="prefetch" href="/assets/js/8.61d45f28.js"><link rel="prefetch" href="/assets/js/9.621a442e.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.62790805.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.be17102d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" class="nav-link home-link">Falldio </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/" class="nav-link">Blogs</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li><li class="nav-item"><a href="/now/" class="nav-link">Now</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/" class="nav-link mobile-home-link">Falldio </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/" class="nav-link">Blogs</a></li><li class="mobile-nav-item"><a href="/tag/" class="nav-link">Tags</a></li><li class="mobile-nav-item"><a href="/now/" class="nav-link">Now</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        哈希表及Golang map的底层实现原理
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">Falldio</span> <span itemprop="address">   in 武汉</span></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2023-4-16">
+      Sun Apr 16 2023
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/tag/数据结构" data-v-42ccfcd5><span data-v-42ccfcd5>数据结构</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/Go" data-v-42ccfcd5><span data-v-42ccfcd5>Go</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h2 id="哈希表"><a href="#哈希表" class="header-anchor">#</a> 哈希表</h2> <p>首先想象一个底层为数组的哈希表，哈希表通过一个<strong>哈希函数</strong>将键值转换为数组索引，然后将键值对存储在数组中。这样就可以通过键值快速访问数组元素。由于数组的寻址是通过指针偏移实现的，<code>&amp;a[i] = &amp;a[0] + i * sizeof(a[0])</code>，所以数组的访问时间复杂度为O(1)。哈希表的访问时间复杂度也是O(1)。</p> <p>然而问题在于，数组是一片连续的、大小固定的内存空间，这其实限制了哈希表的大小。例如，如果一个哈希表被设计来存储最多1000个键值对，那么它的数组大小就至少为1000。但在一般情况下，哈希表实际容纳的元素个数可能远少于1000，这就造成了空间的浪费。为此，有必要寻找一种新的数据结构，是我们可以在尽可能保留数组<mjx-container jax="CHTML" class="MathJax"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c c="O"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c c="("></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c c="1"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c c=")"></mjx-c></mjx-mo></mjx-math></mjx-container>访问效率的同时，又能够减小其对内存空间的需求。</p> <h3 id="链接法"><a href="#链接法" class="header-anchor">#</a> 链接法</h3> <p>现在假设我们的哈希表底层数组长度固定为<code>m</code>，而其能够容纳的元素总数可能远大于这个值，在这种情况下，我们的哈希函数必然会将一些不同的键值映射到相同的数组位置上，即<strong>哈希冲突</strong>。一种简单的解决哈希冲突的方法是链接法：不在底层数组中直接存放键值对，而是存放一个元素为键值对的链表。一旦发生哈希冲突，就将新的键值对插入到链表的头部（或任意位置）。这样，我们就可以通过遍历链表来找到对应的键值对。</p> <h3 id="开放寻址法"><a href="#开放寻址法" class="header-anchor">#</a> 开放寻址法</h3> <p>开放寻址法直接使用数组存储键值对，当出现哈希冲突时，就将元素存放在下一个空闲数组位置上。好处在于，不需要额外的空间来存储指针信息，因此可以用同样的空间提供更长的数组。然而，当数组趋近于被填满时，哈希冲突的几率会急剧增加，这就会导致开放寻址法的性能急剧下降，也因如此，数据检索的速度会骤降。</p> <h2 id="golang-map"><a href="#golang-map" class="header-anchor">#</a> Golang map</h2> <p>首先可在<code>src/runtime/map.go</code>中找到map的定义，如下所示：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> hmap <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    count     <span class="token builtin">int</span> <span class="token comment">// 元素个数</span>
+    flags     <span class="token builtin">uint8</span>
+    B         <span class="token builtin">uint8</span> <span class="token comment">// 桶的数量 = 2^B</span>
+    noverflow <span class="token builtin">uint16</span> <span class="token comment">// 溢出桶的数量</span>
+    hash0     <span class="token builtin">uint32</span> <span class="token comment">// hash 种子</span>
+
+    buckets    unsafe<span class="token punctuation">.</span>Pointer <span class="token comment">// 桶数组</span>
+    oldbuckets unsafe<span class="token punctuation">.</span>Pointer <span class="token comment">// 旧桶数组</span>
+    nevacuate  <span class="token builtin">uintptr</span> <span class="token comment">// 桶迁移进度</span>
+
+    extra <span class="token operator">*</span>mapextra <span class="token comment">// 用于扩容</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> mapextra <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    overflow    <span class="token operator">*</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>bmap <span class="token comment">// 溢出桶</span>
+    oldoverflow <span class="token operator">*</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>bmap <span class="token comment">// 旧溢出桶</span>
+
+    nextOverflow <span class="token operator">*</span>bmap
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 桶</span>
+<span class="token keyword">type</span> bmap <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    <span class="token comment">// bucketCnt = 1 &lt;&lt; abi.MapBucketCountBits = 1 &lt;&lt; 3 = 8</span>
+    tophash <span class="token punctuation">[</span>bucketCnt<span class="token punctuation">]</span><span class="token builtin">uint8</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Golang map大体使用前文所述链接法解决哈希冲突。数据实际上被存放在桶中（<code>hmap</code>的<code>buckets</code>字段，指向桶数组），即<code>bmap</code>。</p> <p>在编译期间，<code>bmap</code>会被编译器转换为如下结构：</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> bmap <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    tophash <span class="token punctuation">[</span>bucketCnt<span class="token punctuation">]</span><span class="token builtin">uint8</span>
+    <span class="token comment">// 注意整个bmap是一个连续地址，这里在内存中的分布实际上是：</span>
+    <span class="token comment">// key1, key2, key3, ..., key8, value1, value2, value3, ..., value8</span>
+    <span class="token comment">// 而非key1, value1, key2, value2, key3, value3, ..., key8, value8</span>
+    <span class="token comment">// 这样可以减少内存对齐的开销，只需要在最后有一个pad即可</span>
+    keys    <span class="token punctuation">[</span>bucketCnt<span class="token punctuation">]</span>keytype
+    values  <span class="token punctuation">[</span>bucketCnt<span class="token punctuation">]</span>valuetype
+    pad     <span class="token builtin">uintptr</span>
+
+    overflow <span class="token builtin">uintptr</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="解决哈希冲突"><a href="#解决哈希冲突" class="header-anchor">#</a> 解决哈希冲突</h3> <p>经过哈希计算之后，元素将根据哈希值<strong>低位</strong>决定落到某一个桶中，并根据哈希值的<strong>高八位</strong>（tophash）决定落入桶中的某一个位置。一旦桶中元素已满，则在<code>overflow</code>字段以链接法的方式构造一个新桶，将元素存放在新桶中。也就是说，<code>hmap</code>的<code>buckets</code>字段指向的是一个长度为<mjx-container jax="CHTML" class="MathJax"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mn class="mjx-n"><mjx-c c="2"></mjx-c></mjx-mn><mjx-script style="vertical-align:0.363em;"><mjx-mi size="s" class="mjx-i"><mjx-c c="B"></mjx-c></mjx-mi></mjx-script></mjx-msup></mjx-math></mjx-container>的桶数组，而每个桶又是一个链表。</p> <h3 id="扩容"><a href="#扩容" class="header-anchor">#</a> 扩容</h3> <p>扩容实际上分为扩容和搬迁两步操作。为了减少一次性扩容的开销，Go在每次访问map时会检测扩容条件，逐步进行扩容操作。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">mapassign</span><span class="token punctuation">(</span>t <span class="token operator">*</span>maptype<span class="token punctuation">,</span> h <span class="token operator">*</span>hmap<span class="token punctuation">,</span> key unsafe<span class="token punctuation">.</span>Pointer<span class="token punctuation">)</span> unsafe<span class="token punctuation">.</span>Pointer <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+    <span class="token keyword">if</span> <span class="token operator">!</span>h<span class="token punctuation">.</span><span class="token function">growing</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token function">overLoadFactor</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>count<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> h<span class="token punctuation">.</span>B<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">tooManyOverflowBuckets</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>noverflow<span class="token punctuation">,</span> h<span class="token punctuation">.</span>B<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">hashGrow</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> h<span class="token punctuation">)</span>
+		<span class="token keyword">goto</span> again <span class="token comment">// Growing the table invalidates everything, so try again</span>
+	<span class="token punctuation">}</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>当负载因子超过6.5或overflow数量过大时，将触发扩容。扩容操作分等量扩容和增量扩容两种。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token comment">// 该函数通过设置flags确定具体的扩容策略，并且实现扩容</span>
+<span class="token keyword">func</span> <span class="token function">hashGrow</span><span class="token punctuation">(</span>t <span class="token operator">*</span>maptype<span class="token punctuation">,</span> h <span class="token operator">*</span>hmap<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">// If we've hit the load factor, get bigger.</span>
+	<span class="token comment">// Otherwise, there are too many overflow buckets,</span>
+	<span class="token comment">// so keep the same number of buckets and &quot;grow&quot; laterally.</span>
+	bigger <span class="token operator">:=</span> <span class="token function">uint8</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+    <span class="token comment">// 检测负载因子</span>
+	<span class="token keyword">if</span> <span class="token operator">!</span><span class="token function">overLoadFactor</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>count<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> h<span class="token punctuation">.</span>B<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		bigger <span class="token operator">=</span> <span class="token number">0</span>
+		h<span class="token punctuation">.</span>flags <span class="token operator">|=</span> sameSizeGrow
+	<span class="token punctuation">}</span>
+	oldbuckets <span class="token operator">:=</span> h<span class="token punctuation">.</span>buckets
+    <span class="token comment">// makeBucketArray()将初始化一个备份的桶数组，</span>
+    <span class="token comment">// 注意如果是增量扩容，桶数组的长度是旧桶数组的两倍</span>
+    <span class="token comment">// 类似于slice或vector</span>
+	newbuckets<span class="token punctuation">,</span> nextOverflow <span class="token operator">:=</span> <span class="token function">makeBucketArray</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> h<span class="token punctuation">.</span>B<span class="token operator">+</span>bigger<span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
+
+    <span class="token operator">...</span>
+	<span class="token comment">// commit the grow (atomic wrt gc)</span>
+	h<span class="token punctuation">.</span>B <span class="token operator">+=</span> bigger
+	h<span class="token punctuation">.</span>flags <span class="token operator">=</span> flags
+	h<span class="token punctuation">.</span>oldbuckets <span class="token operator">=</span> oldbuckets
+	h<span class="token punctuation">.</span>buckets <span class="token operator">=</span> newbuckets
+	h<span class="token punctuation">.</span>nevacuate <span class="token operator">=</span> <span class="token number">0</span>
+	h<span class="token punctuation">.</span>noverflow <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token operator">...</span>
+	<span class="token comment">// the actual copying of the hash table data is done incrementally</span>
+	<span class="token comment">// by growWork() and evacuate().</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在每次访问map时，都会调用<code>growWork()</code>函数，该函数执行具体搬迁操作，每次从oldBucket中搬迁一个元素到bucket中。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">growWork</span><span class="token punctuation">(</span>t <span class="token operator">*</span>maptype<span class="token punctuation">,</span> h <span class="token operator">*</span>hmap<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// make sure we evacuate the oldbucket corresponding</span>
+	<span class="token comment">// to the bucket we're about to use</span>
+	<span class="token function">evacuate</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> h<span class="token punctuation">,</span> bucket<span class="token operator">&amp;</span>h<span class="token punctuation">.</span><span class="token function">oldbucketmask</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	<span class="token comment">// evacuate one more oldbucket to make progress on growing</span>
+	<span class="token keyword">if</span> h<span class="token punctuation">.</span><span class="token function">growing</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">evacuate</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> h<span class="token punctuation">,</span> h<span class="token punctuation">.</span>nevacuate<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> evacDst <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    b <span class="token operator">*</span>bmap <span class="token comment">// 目标桶</span>
+    i <span class="token builtin">int</span> <span class="token comment">// 目标桶中的位置</span>
+    k unsafe<span class="token punctuation">.</span>Pointer <span class="token comment">// key</span>
+    e unsafe<span class="token punctuation">.</span>Pointer <span class="token comment">// element</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 搬迁策略</span>
+<span class="token keyword">func</span> <span class="token function">evacuate</span><span class="token punctuation">(</span>t <span class="token operator">*</span>maptype<span class="token punctuation">,</span> h <span class="token operator">*</span>hmap<span class="token punctuation">,</span> oldbucket <span class="token builtin">uintptr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	b <span class="token operator">:=</span> <span class="token punctuation">(</span><span class="token operator">*</span>bmap<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>oldbuckets<span class="token punctuation">,</span> oldbucket<span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>bucketsize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	newbit <span class="token operator">:=</span> h<span class="token punctuation">.</span><span class="token function">noldbuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> <span class="token operator">!</span><span class="token function">evacuated</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token comment">// xy contains the x and y (low and high) evacuation destinations.</span>
+		<span class="token keyword">var</span> xy <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>evacDst
+        <span class="token comment">// 初始化x和y两个桶，即可能的搬迁目的地</span>
+		x <span class="token operator">:=</span> <span class="token operator">&amp;</span>xy<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+		x<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*</span>bmap<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>buckets<span class="token punctuation">,</span> oldbucket<span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>bucketsize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		x<span class="token punctuation">.</span>k <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span>unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">,</span> dataOffset<span class="token punctuation">)</span>
+		x<span class="token punctuation">.</span>e <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>k<span class="token punctuation">,</span> bucketCnt<span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>keysize<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+		<span class="token keyword">if</span> <span class="token operator">!</span>h<span class="token punctuation">.</span><span class="token function">sameSizeGrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token comment">// Only calculate y pointers if we're growing bigger.</span>
+			<span class="token comment">// Otherwise GC can see bad pointers.</span>
+			y <span class="token operator">:=</span> <span class="token operator">&amp;</span>xy<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+			y<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*</span>bmap<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>buckets<span class="token punctuation">,</span> <span class="token punctuation">(</span>oldbucket<span class="token operator">+</span>newbit<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>bucketsize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			y<span class="token punctuation">.</span>k <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span>unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>y<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">,</span> dataOffset<span class="token punctuation">)</span>
+			y<span class="token punctuation">.</span>e <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span>y<span class="token punctuation">.</span>k<span class="token punctuation">,</span> bucketCnt<span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>keysize<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+
+        <span class="token comment">// 对桶链表中的每个元素进行搬迁</span>
+		<span class="token keyword">for</span> <span class="token punctuation">;</span> b <span class="token operator">!=</span> <span class="token boolean">nil</span><span class="token punctuation">;</span> b <span class="token operator">=</span> b<span class="token punctuation">.</span><span class="token function">overflow</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 找到key段和value段的起始地址</span>
+			k <span class="token operator">:=</span> <span class="token function">add</span><span class="token punctuation">(</span>unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">,</span> dataOffset<span class="token punctuation">)</span>
+			e <span class="token operator">:=</span> <span class="token function">add</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> bucketCnt<span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>keysize<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token comment">// 对每个键值对进行操作</span>
+			<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> bucketCnt<span class="token punctuation">;</span> i<span class="token punctuation">,</span> k<span class="token punctuation">,</span> e <span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token function">add</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> <span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>keysize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">add</span><span class="token punctuation">(</span>e<span class="token punctuation">,</span> <span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>elemsize<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 检测当前元素哈希是否落在当前桶中</span>
+                <span class="token operator">...</span>
+				<span class="token keyword">var</span> useY <span class="token builtin">uint8</span>
+				<span class="token keyword">if</span> <span class="token operator">!</span>h<span class="token punctuation">.</span><span class="token function">sameSizeGrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+					<span class="token comment">// Compute hash to make our evacuation decision (whether we need</span>
+					<span class="token comment">// to send this key/elem to bucket x or bucket y).</span>
+                    <span class="token operator">...</span>
+				<span class="token punctuation">}</span>
+
+                <span class="token operator">...</span>
+
+				dst <span class="token operator">:=</span> <span class="token operator">&amp;</span>xy<span class="token punctuation">[</span>useY<span class="token punctuation">]</span>                 <span class="token comment">// evacuation destination</span>
+
+                <span class="token comment">// 桶溢出，分配新的桶，将元素放在新桶首位</span>
+				<span class="token keyword">if</span> dst<span class="token punctuation">.</span>i <span class="token operator">==</span> bucketCnt <span class="token punctuation">{</span>
+					dst<span class="token punctuation">.</span>b <span class="token operator">=</span> h<span class="token punctuation">.</span><span class="token function">newoverflow</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> dst<span class="token punctuation">.</span>b<span class="token punctuation">)</span>
+					dst<span class="token punctuation">.</span>i <span class="token operator">=</span> <span class="token number">0</span>
+					dst<span class="token punctuation">.</span>k <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span>unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>dst<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">,</span> dataOffset<span class="token punctuation">)</span>
+					dst<span class="token punctuation">.</span>e <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span>dst<span class="token punctuation">.</span>k<span class="token punctuation">,</span> bucketCnt<span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>keysize<span class="token punctuation">)</span><span class="token punctuation">)</span>
+				<span class="token punctuation">}</span>
+				dst<span class="token punctuation">.</span>b<span class="token punctuation">.</span>tophash<span class="token punctuation">[</span>dst<span class="token punctuation">.</span>i<span class="token operator">&amp;</span><span class="token punctuation">(</span>bucketCnt<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> top <span class="token comment">// mask dst.i as an optimization, to avoid a bounds check</span>
+                <span class="token comment">// 搬迁键值对到dst，并调整下一个搬迁位置</span>
+                <span class="token operator">...</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+        <span class="token comment">// 清理旧桶</span>
+        <span class="token operator">...</span>
+	<span class="token punctuation">}</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="key的定位"><a href="#key的定位" class="header-anchor">#</a> key的定位</h3> <p>key经过哈希计算之后会得到一个64位的哈希值，低<code>B</code>位用于定位桶，高8位用于定位桶中的位置。如果没有找到合适的位置，则按照链接法在桶链表中继续查找。</p> <h3 id="map的遍历"><a href="#map的遍历" class="header-anchor">#</a> map的遍历</h3> <p>在理想状况下，map的遍历是通过遍历桶数组的所有元素，及桶链表中所有的有效元素位实现的。然而，由于map的扩容操作是逐步进行的，如果正在扩容过程中，在遍历过程中就需要遍历oldBucket和bucket。</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">type</span> hiter <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	key         unsafe<span class="token punctuation">.</span>Pointer <span class="token comment">// Must be in first position.  Write nil to indicate iteration end (see cmd/compile/internal/walk/range.go).</span>
+	elem        unsafe<span class="token punctuation">.</span>Pointer <span class="token comment">// Must be in second position (see cmd/compile/internal/walk/range.go).</span>
+	t           <span class="token operator">*</span>maptype
+	h           <span class="token operator">*</span>hmap
+	buckets     unsafe<span class="token punctuation">.</span>Pointer <span class="token comment">// bucket ptr at hash_iter initialization time</span>
+	bptr        <span class="token operator">*</span>bmap          <span class="token comment">// current bucket</span>
+	overflow    <span class="token operator">*</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>bmap       <span class="token comment">// keeps overflow buckets of hmap.buckets alive</span>
+	oldoverflow <span class="token operator">*</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>bmap       <span class="token comment">// keeps overflow buckets of hmap.oldbuckets alive</span>
+	startBucket <span class="token builtin">uintptr</span>        <span class="token comment">// bucket iteration started at</span>
+	offset      <span class="token builtin">uint8</span>          <span class="token comment">// intra-bucket offset to start from during iteration (should be big enough to hold bucketCnt-1)</span>
+	wrapped     <span class="token builtin">bool</span>           <span class="token comment">// already wrapped around from end of bucket array to beginning</span>
+	B           <span class="token builtin">uint8</span>
+	i           <span class="token builtin">uint8</span>
+	bucket      <span class="token builtin">uintptr</span>
+	checkBucket <span class="token builtin">uintptr</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">mapiterinit</span><span class="token punctuation">(</span>t <span class="token operator">*</span>maptype<span class="token punctuation">,</span> h <span class="token operator">*</span>hmap<span class="token punctuation">,</span> it <span class="token operator">*</span>hiter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token comment">// hiter的字段初始化</span>
+    <span class="token operator">...</span>
+
+	<span class="token comment">// decide where to start</span>
+	<span class="token keyword">var</span> r <span class="token builtin">uintptr</span>
+	<span class="token keyword">if</span> h<span class="token punctuation">.</span>B <span class="token operator">&gt;</span> <span class="token number">31</span><span class="token operator">-</span>bucketCntBits <span class="token punctuation">{</span>
+		r <span class="token operator">=</span> <span class="token function">uintptr</span><span class="token punctuation">(</span><span class="token function">fastrand64</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+		r <span class="token operator">=</span> <span class="token function">uintptr</span><span class="token punctuation">(</span><span class="token function">fastrand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+    <span class="token comment">// 随机选择一个桶，且随机选择一个桶中的位置作为遍历的起始位置</span>
+	it<span class="token punctuation">.</span>startBucket <span class="token operator">=</span> r <span class="token operator">&amp;</span> <span class="token function">bucketMask</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>B<span class="token punctuation">)</span>
+	it<span class="token punctuation">.</span>offset <span class="token operator">=</span> <span class="token function">uint8</span><span class="token punctuation">(</span>r <span class="token operator">&gt;&gt;</span> h<span class="token punctuation">.</span>B <span class="token operator">&amp;</span> <span class="token punctuation">(</span>bucketCnt <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	<span class="token comment">// iterator state</span>
+	it<span class="token punctuation">.</span>bucket <span class="token operator">=</span> it<span class="token punctuation">.</span>startBucket
+
+	<span class="token comment">// Remember we have an iterator.</span>
+	<span class="token comment">// Can run concurrently with another mapiterinit().</span>
+	<span class="token keyword">if</span> old <span class="token operator">:=</span> h<span class="token punctuation">.</span>flags<span class="token punctuation">;</span> old<span class="token operator">&amp;</span><span class="token punctuation">(</span>iterator<span class="token operator">|</span>oldIterator<span class="token punctuation">)</span> <span class="token operator">!=</span> iterator<span class="token operator">|</span>oldIterator <span class="token punctuation">{</span>
+		atomic<span class="token punctuation">.</span><span class="token function">Or8</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>h<span class="token punctuation">.</span>flags<span class="token punctuation">,</span> iterator<span class="token operator">|</span>oldIterator<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token function">mapiternext</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">mapiternext</span><span class="token punctuation">(</span>it <span class="token operator">*</span>hiter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	h <span class="token operator">:=</span> it<span class="token punctuation">.</span>h
+	<span class="token comment">// it字段赋值</span>
+    <span class="token operator">...</span>
+
+next<span class="token punctuation">:</span>
+	<span class="token keyword">if</span> b <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> bucket <span class="token operator">==</span> it<span class="token punctuation">.</span>startBucket <span class="token operator">&amp;&amp;</span> it<span class="token punctuation">.</span>wrapped <span class="token punctuation">{</span>
+			<span class="token comment">// end of iteration</span>
+			it<span class="token punctuation">.</span>key <span class="token operator">=</span> <span class="token boolean">nil</span>
+			it<span class="token punctuation">.</span>elem <span class="token operator">=</span> <span class="token boolean">nil</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span> h<span class="token punctuation">.</span><span class="token function">growing</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> it<span class="token punctuation">.</span>B <span class="token operator">==</span> h<span class="token punctuation">.</span>B <span class="token punctuation">{</span>
+			<span class="token comment">// Iterator was started in the middle of a grow, and the grow isn't done yet.</span>
+			<span class="token comment">// If the bucket we're looking at hasn't been filled in yet (i.e. the old</span>
+			<span class="token comment">// bucket hasn't been evacuated) then we need to iterate through the old</span>
+			<span class="token comment">// bucket and only return the ones that will be migrated to this bucket.</span>
+			oldbucket <span class="token operator">:=</span> bucket <span class="token operator">&amp;</span> it<span class="token punctuation">.</span>h<span class="token punctuation">.</span><span class="token function">oldbucketmask</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*</span>bmap<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>oldbuckets<span class="token punctuation">,</span> oldbucket<span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>bucketsize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token keyword">if</span> <span class="token operator">!</span><span class="token function">evacuated</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 需要遍历oldbucket</span>
+				checkBucket <span class="token operator">=</span> bucket
+			<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+				b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*</span>bmap<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span>buckets<span class="token punctuation">,</span> bucket<span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>bucketsize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+				checkBucket <span class="token operator">=</span> noCheck
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+			b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">*</span>bmap<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span>buckets<span class="token punctuation">,</span> bucket<span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>bucketsize<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			checkBucket <span class="token operator">=</span> noCheck
+		<span class="token punctuation">}</span>
+		bucket<span class="token operator">++</span>
+		<span class="token keyword">if</span> bucket <span class="token operator">==</span> <span class="token function">bucketShift</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span>B<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 遍历到最后一个桶，重置bucket</span>
+			bucket <span class="token operator">=</span> <span class="token number">0</span>
+			it<span class="token punctuation">.</span>wrapped <span class="token operator">=</span> <span class="token boolean">true</span>
+		<span class="token punctuation">}</span>
+		i <span class="token operator">=</span> <span class="token number">0</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">for</span> <span class="token punctuation">;</span> i <span class="token operator">&lt;</span> bucketCnt<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		offi <span class="token operator">:=</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> it<span class="token punctuation">.</span>offset<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>bucketCnt <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>tophash<span class="token punctuation">[</span>offi<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span> b<span class="token punctuation">.</span>tophash<span class="token punctuation">[</span>offi<span class="token punctuation">]</span> <span class="token operator">==</span> evacuatedEmpty <span class="token punctuation">{</span>
+			<span class="token comment">// TODO: emptyRest is hard to use here, as we start iterating</span>
+			<span class="token comment">// in the middle of a bucket. It's feasible, just tricky.</span>
+			<span class="token keyword">continue</span>
+		<span class="token punctuation">}</span>
+		k <span class="token operator">:=</span> <span class="token function">add</span><span class="token punctuation">(</span>unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">,</span> dataOffset<span class="token operator">+</span><span class="token function">uintptr</span><span class="token punctuation">(</span>offi<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>keysize<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> t<span class="token punctuation">.</span><span class="token function">indirectkey</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			k <span class="token operator">=</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>unsafe<span class="token punctuation">.</span>Pointer<span class="token punctuation">)</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		e <span class="token operator">:=</span> <span class="token function">add</span><span class="token punctuation">(</span>unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">,</span> dataOffset<span class="token operator">+</span>bucketCnt<span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>keysize<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">uintptr</span><span class="token punctuation">(</span>offi<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">uintptr</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>elemsize<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> checkBucket <span class="token operator">!=</span> noCheck <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>h<span class="token punctuation">.</span><span class="token function">sameSizeGrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token comment">// Special case: iterator was started during a grow to a larger size</span>
+			<span class="token comment">// and the grow is not done yet. We're working on a bucket whose</span>
+			<span class="token comment">// oldbucket has not been evacuated yet. Or at least, it wasn't</span>
+			<span class="token comment">// evacuated when we started the bucket. So we're iterating</span>
+			<span class="token comment">// through the oldbucket, skipping any keys that will go</span>
+			<span class="token comment">// to the other new bucket (each oldbucket expands to two</span>
+			<span class="token comment">// buckets during a grow).</span>
+			<span class="token keyword">if</span> t<span class="token punctuation">.</span><span class="token function">reflexivekey</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> t<span class="token punctuation">.</span>key<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token comment">// If the item in the oldbucket is not destined for</span>
+				<span class="token comment">// the current new bucket in the iteration, skip it.</span>
+				hash <span class="token operator">:=</span> t<span class="token punctuation">.</span><span class="token function">hasher</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> <span class="token function">uintptr</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>hash0<span class="token punctuation">)</span><span class="token punctuation">)</span>
+				<span class="token keyword">if</span> hash<span class="token operator">&amp;</span><span class="token function">bucketMask</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span>B<span class="token punctuation">)</span> <span class="token operator">!=</span> checkBucket <span class="token punctuation">{</span>
+					<span class="token keyword">continue</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+				<span class="token comment">// Hash isn't repeatable if k != k (NaNs).  We need a</span>
+				<span class="token comment">// repeatable and randomish choice of which direction</span>
+				<span class="token comment">// to send NaNs during evacuation. We'll use the low</span>
+				<span class="token comment">// bit of tophash to decide which way NaNs go.</span>
+				<span class="token comment">// NOTE: this case is why we need two evacuate tophash</span>
+				<span class="token comment">// values, evacuatedX and evacuatedY, that differ in</span>
+				<span class="token comment">// their low bit.</span>
+				<span class="token keyword">if</span> checkBucket<span class="token operator">&gt;&gt;</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span>B<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token function">uintptr</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>tophash<span class="token punctuation">[</span>offi<span class="token punctuation">]</span><span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+					<span class="token keyword">continue</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>b<span class="token punctuation">.</span>tophash<span class="token punctuation">[</span>offi<span class="token punctuation">]</span> <span class="token operator">!=</span> evacuatedX <span class="token operator">&amp;&amp;</span> b<span class="token punctuation">.</span>tophash<span class="token punctuation">[</span>offi<span class="token punctuation">]</span> <span class="token operator">!=</span> evacuatedY<span class="token punctuation">)</span> <span class="token operator">||</span>
+			<span class="token operator">!</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span><span class="token function">reflexivekey</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> t<span class="token punctuation">.</span>key<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token comment">// This is the golden data, we can return it.</span>
+			<span class="token comment">// OR</span>
+			<span class="token comment">// key!=key, so the entry can't be deleted or updated, so we can just return it.</span>
+			<span class="token comment">// That's lucky for us because when key!=key we can't look it up successfully.</span>
+			it<span class="token punctuation">.</span>key <span class="token operator">=</span> k
+			<span class="token keyword">if</span> t<span class="token punctuation">.</span><span class="token function">indirectelem</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				e <span class="token operator">=</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>unsafe<span class="token punctuation">.</span>Pointer<span class="token punctuation">)</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token punctuation">}</span>
+			it<span class="token punctuation">.</span>elem <span class="token operator">=</span> e
+		<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+			<span class="token comment">// The hash table has grown since the iterator was started.</span>
+			<span class="token comment">// The golden data for this key is now somewhere else.</span>
+			<span class="token comment">// Check the current hash table for the data.</span>
+			<span class="token comment">// This code handles the case where the key</span>
+			<span class="token comment">// has been deleted, updated, or deleted and reinserted.</span>
+			<span class="token comment">// NOTE: we need to regrab the key as it has potentially been</span>
+			<span class="token comment">// updated to an equal() but not identical key (e.g. +0.0 vs -0.0).</span>
+			rk<span class="token punctuation">,</span> re <span class="token operator">:=</span> <span class="token function">mapaccessK</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> h<span class="token punctuation">,</span> k<span class="token punctuation">)</span>
+			<span class="token keyword">if</span> rk <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+				<span class="token keyword">continue</span> <span class="token comment">// key has been deleted</span>
+			<span class="token punctuation">}</span>
+			it<span class="token punctuation">.</span>key <span class="token operator">=</span> rk
+			it<span class="token punctuation">.</span>elem <span class="token operator">=</span> re
+		<span class="token punctuation">}</span>
+		it<span class="token punctuation">.</span>bucket <span class="token operator">=</span> bucket
+		<span class="token keyword">if</span> it<span class="token punctuation">.</span>bptr <span class="token operator">!=</span> b <span class="token punctuation">{</span> <span class="token comment">// avoid unnecessary write barrier; see issue 14921</span>
+			it<span class="token punctuation">.</span>bptr <span class="token operator">=</span> b
+		<span class="token punctuation">}</span>
+		it<span class="token punctuation">.</span>i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+		it<span class="token punctuation">.</span>checkBucket <span class="token operator">=</span> checkBucket
+		<span class="token keyword">return</span>
+	<span class="token punctuation">}</span>
+	b <span class="token operator">=</span> b<span class="token punctuation">.</span><span class="token function">overflow</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
+	i <span class="token operator">=</span> <span class="token number">0</span>
+	<span class="token keyword">goto</span> next
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="misc"><a href="#misc" class="header-anchor">#</a> Misc</h2> <h3 id="map的迭代顺序是随机的"><a href="#map的迭代顺序是随机的" class="header-anchor">#</a> map的迭代顺序是随机的</h3> <p>这一点有两方面原因：</p> <ol><li>每次迭代的起始位置是通过<code>fastrand()</code>随机生成的，见上面<code>mapiternext</code>的代码。</li> <li>搬迁可能导致key的位置发生变化。</li></ol> <h3 id="key的类型必须是可比较的"><a href="#key的类型必须是可比较的" class="header-anchor">#</a> key的类型必须是可比较的</h3> <p>map的key必须是可比较的，即必须实现<code>==</code>和<code>!=</code>操作符。而复合数据类型slice、map、function等不能直接作为key使用（也许可以转换为字符串等）。</p> <h3 id="map不能边遍历边修改"><a href="#map不能边遍历边修改" class="header-anchor">#</a> map不能边遍历边修改</h3> <p>这样做可能导致扩容，新增加的元素不一定能够遍历到，且顺序不确定。</p> <h3 id="map的键值对无法地址"><a href="#map的键值对无法地址" class="header-anchor">#</a> map的键值对无法地址</h3> <p>map的元素可能在扩容时改变位置，所以不允许取地址。</p> <h3 id="map不支持并发"><a href="#map不支持并发" class="header-anchor">#</a> map不支持并发</h3> <p>map在操作过程中会检查写标志，一旦发现正在写入，则会直接panic。因此，安全的操作是使用<code>sync.RWMutex</code>进行写锁，或者使用<code>sync.Map</code>。</p> <h2 id="拓展阅读"><a href="#拓展阅读" class="header-anchor">#</a> 拓展阅读</h2> <ul><li><a href="https://book.douban.com/subject/20432061/" target="_blank" rel="noopener noreferrer">算法导论<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://book.douban.com/subject/35144587/" target="_blank" rel="noopener noreferrer">Go专家编程<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://golang.design/go-questions/map/principal/" target="_blank" rel="noopener noreferrer">map的实现原理<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#哈希表" title="哈希表">哈希表</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#链接法" title="链接法">链接法</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#开放寻址法" title="开放寻址法">开放寻址法</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#golang-map" title="Golang map">Golang map</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#解决哈希冲突" title="解决哈希冲突">解决哈希冲突</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#扩容" title="扩容">扩容</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#key的定位" title="key的定位">key的定位</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#map的遍历" title="map的遍历">map的遍历</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#misc" title="Misc">Misc</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#map的迭代顺序是随机的" title="map的迭代顺序是随机的">map的迭代顺序是随机的</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#key的类型必须是可比较的" title="key的类型必须是可比较的">key的类型必须是可比较的</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#map不能边遍历边修改" title="map不能边遍历边修改">map不能边遍历边修改</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#map的键值对无法地址" title="map的键值对无法地址">map的键值对无法地址</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#map不支持并发" title="map不支持并发">map不支持并发</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#拓展阅读" title="拓展阅读">拓展阅读</a></div></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8><li class="contact-item" data-v-3d9deeb8><a href="https://github.com/Falldio" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github" data-v-3d9deeb8><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-v-3d9deeb8></path></svg>
+          
+        </a></li><li class="contact-item" data-v-3d9deeb8><a href="https://www.linkedin.cn/incareer/in/ACoAACpuYSYBUOXa-c2x79JYFfhEtRgRexrSBO4" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin" data-v-3d9deeb8><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" data-v-3d9deeb8></path><rect x="2" y="9" width="4" height="12" data-v-3d9deeb8></rect><circle cx="4" cy="4" r="2" data-v-3d9deeb8></circle></svg>
+          
+        </a></li><li class="contact-item" data-v-3d9deeb8><a href="https://twitter.com/lichng79348303" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter" data-v-3d9deeb8><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" data-v-3d9deeb8></path></svg>
+          
+        </a></li></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8></ul></div></footer></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.d39313cf.js" defer></script><script src="/assets/js/6.42180b02.js" defer></script><script src="/assets/js/3.8f3d13df.js" defer></script><script src="/assets/js/25.8e67c3c4.js" defer></script>
+  </body>
+</html>
