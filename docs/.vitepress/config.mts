@@ -7,6 +7,7 @@ export default defineConfig({
   title: "YoloKokura",
   description: "YoloKokura Personal Blog",
   srcDir: "../",
+  ignoreDeadLinks: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
