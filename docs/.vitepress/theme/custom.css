@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --kokura-bg: #FCF8F3;
+    --kokura-primary: #FFAAA5;
+    --kokura-secondary: #FFD3B6;
+    --kokura-accent: #698474;
+  }
+}
+
+div[class*="language-"],
+.vp-block {
+  position: relative;
+  margin: 16px -24px;
+  background-color: var(--vp-code-block-bg);
+  overflow-x: auto;
+  transition: background-color 0.5s;
+}
+
+@media (min-width: 640px) {
+  div[class*="language-"],
+  .vp-block {
+    border-radius: 8px;
+    margin: 16px 0;
+  }
+}
+
+@media (max-width: 639px) {
+  li div[class*="language-"] {
+    border-radius: 8px 0 0 8px;
+  }
+}
+
+[class*="language-"] pre,
+[class*="language-"] code {
+  /*rtl:ignore*/
+  direction: ltr;
+  /*rtl:ignore*/
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+[class*="language-"] pre {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 20px 0;
+  background: transparent;
+  overflow-x: auto;
+}
+
+[class*="language-"] code {
+  display: block;
+  padding: 0 24px;
+  width: fit-content;
+  min-width: 100%;
+  line-height: 1.7;
+  font-size: .875em;
+  color: rgba(60, 60, 67, .78);
+  transition: color 0.5s;
+}
+
+[class*="language-"] code .highlighted {
+  background-color: rgba(142, 150, 170, .14);
+  transition: background-color 0.5s;
+  margin: 0 -24px;
+  padding: 0 24px;
+  width: calc(100% + 2 * 24px);
+  display: inline-block;
+}
+
+[class*="language-"] code .highlighted.error {
+  background-color: rgba(244, 63, 94, .14);
+}
+
+[class*="language-"] code .highlighted.warning {
+  background-color: rgba(234, 179, 8, .14);
+}
+
+[class*="language-"] code .diff {
+  transition: background-color 0.5s;
+  margin: 0 -24px;
+  padding: 0 24px;
+  width: calc(100% + 2 * 24px);
+  display: inline-block;
+}
+
+[class*="language-"] code .diff::before {
+  position: absolute;
+  left: 10px;
+}
+
+[class*="language-"] .has-focused-lines .line:not(.has-focus) {
+  filter: blur(0.095rem);
+  opacity: 0.4;
+  transition: filter 0.35s, opacity 0.35s;
+}
+
+[class*="language-"] .has-focused-lines .line:not(.has-focus) {
+  opacity: 0.7;
+  transition: filter 0.35s, opacity 0.35s;
+}
+
+[class*="language-"]:hover .has-focused-lines .line:not(.has-focus) {
+  filter: blur(0);
+  opacity: 1;
+}
+
+[class*="language-"] code .diff.remove {
+  background-color: rgba(244, 63, 94, .14);
+  opacity: 0.7;
+}
+
+[class*="language-"] code .diff.remove::before {
+  content: "-";
+  color: #b8272c;
+}
+
+[class*="language-"] code .diff.add {
+  background-color: rgba(16, 185, 129, .14);
+}
+
+[class*="language-"] code .diff.add::before {
+  content: "+";
+  color: #18794e;
+}
+
+div[class*="language-"].line-numbers-mode {
+  /*rtl:ignore*/
+  padding-left: 32px;
+}
+
+.line-numbers-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /*rtl:ignore*/
+  left: 0;
+  z-index: 3;
+  /*rtl:ignore*/
+  border-right: 1px solid #e2e2e3;
+  padding-top: 20px;
+  width: 32px;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  line-height: 1.7;
+  font-size: 13px;
+  color: rgba(60, 60, 67, .56);
+  transition: border-color 0.5s, color 0.5s;
+}
+
+[class*="language-"] > button.copy {
+  /*rtl:ignore*/
+  direction: ltr;
+  position: absolute;
+  top: 12px;
+  /*rtl:ignore*/
+  right: 12px;
+  z-index: 3;
+  border: 1px solid #e2e2e3;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  background-color: #f6f6f7;
+  opacity: 0;
+  cursor: pointer;
+  background-image: var(--icon-copy);
+  background-position: 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  transition: border-color 0.25s, background-color 0.25s, opacity 0.25s;
+}
+
+[class*="language-"]:hover > button.copy,
+[class*="language-"] > button.copy:focus {
+  opacity: 1;
+}
+
+[class*="language-"] > button.copy:hover,
+[class*="language-"] > button.copy.copied {
+  border-color: #e2e2e3;
+  background-color: #ffffff;
+}
+
+[class*="language-"] > button.copy.copied,
+[class*="language-"] > button.copy:hover.copied {
+  /*rtl:ignore*/
+  border-radius: 0 4px 4px 0;
+  background-color: #ffffff;
+  background-image: var(--icon-copied);
+}
+
+[class*="language-"] > button.copy.copied::before,
+[class*="language-"] > button.copy:hover.copied::before {
+  position: relative;
+  top: -1px;
+  /*rtl:ignore*/
+  transform: translateX(calc(-100% - 1px));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #e2e2e3;
+  /*rtl:ignore*/
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+  padding: 0 10px;
+  width: fit-content;
+  height: 40px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(60, 60, 67, .78);
+  background-color: #ffffff;
+  white-space: nowrap;
+  content: "Copied";
+}
+
+[class*="language-"] > span.lang {
+  position: absolute;
+  top: 2px;
+  /*rtl:ignore*/
+  right: 8px;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  transition: color 0.4s, opacity 0.4s;
+}
+
+[class*="language-"]:hover > button.copy + span.lang,
+[class*="language-"] > button.copy:focus + span.lang {
+  opacity: 0;
+}
+
+
+
+:root {
+  --icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E");
+  --icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
+}
