@@ -1,7 +1,7 @@
 ---
 title: Now!
 layout: now
-date: 2024-4-7
+date: 2024-4-14
 summary: 这里记录所有我现在在做的事情，一方面希望以此提醒自己，一方面可能对读者有帮助。
 ---
 
@@ -18,6 +18,7 @@ summary: 这里记录所有我现在在做的事情，一方面希望以此提�
 - [The 7 Habits of Highly Effective People](https://book.douban.com/subject/1427920/)
 - [慈禧全传](https://book.douban.com/subject/26305373/)
 - [大方廣佛華嚴經](https://book.douban.com/subject/2057229/)
+- [太白金星有点烦](https://book.douban.com/subject/36328704/)
 
 ## 我在听
 
