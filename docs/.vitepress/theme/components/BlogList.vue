@@ -17,7 +17,7 @@ watchEffect(() => {
 <template>
     <div>
         <h1 class="page-header text-4xl font-bold py-10 border-dashed border-b">{{ title }}</h1>
-        <BlogEntry v-for="post in posts" :key="post.title" :title="post.title" :date="post.date" :summary="post.summary"
+        <BlogEntry class="w-3/5" v-for="post in posts" :key="post.title" :title="post.title" :date="post.date" :summary="post.summary"
             :url="post.url" :tags="post.tags" />
     </div>
 </template>

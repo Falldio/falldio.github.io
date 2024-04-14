@@ -1,12 +1,6 @@
 <script setup>
 import { addSpaceBetweenCharacters } from '../composables/utils';
-import { useRouter } from 'vitepress';
-
-const router = useRouter();
-
-function navigateToTag(tag) {
-    router.go(`/${tag}-tag`);
-}
+import TagButton from './TagButton.vue';
 </script>
 
 <template>
@@ -23,13 +17,12 @@ function navigateToTag(tag) {
                 class="text-xl text-gray-500 block mt-5">{{ addSpaceBetweenCharacters($frontmatter.summary) }}</span>
         </div>
         <div class="blog-content flex gap-8">
-            <Content class="prose max-w-none w-4/5" />
-            <div class="blog-sidebar w-1/5">
+            <Content class="prose max-w-none w-3/5" />
+            <div class="blog-sidebar w-2/5">
                 <div class="blog-tags p-5">
                     <h4 class="text-2xl font-bold mb-2">Tags: </h4>
                     <div class="tags-container flex flex-wrap gap-1">
-                        <button type="button" @click="navigateToTag(tag)" v-for="tag in $frontmatter.tags"
-                            :key="tag" class="tag-button rounded-lg bg-green-30 p-2 m-1">{{ tag }}</button>
+                        <TagButton v-for="tag in $frontmatter.tags" :key="tag" :tag="tag" :displayText="tag"/>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@ const goHome = () => {
 </script>
 
 <template>
-    <header class="mx-auto p-3">
+    <header class="w-auto p-3">
         <div class="py-4 border-slate-900/10 lg:px-8 lg:border-0 mx-4 lg:mx-0">
             <div class="relative flex items-center">
                 <div class="mr-3 flex-none md:w-auto font-bold text-xl hover:cursor-pointer hover:text-kokura-accent" @click="goHome">YoloKokura</div>

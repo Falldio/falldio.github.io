@@ -8,13 +8,15 @@ const { page, frontmatter } = useData();
 </script>
 
 <template>
-    <Header />
-    <section class="flex">
-        <div v-if="page.isNotFound" class="underline">404 Not Found</div>
-        <Home v-if="frontmatter.layout === 'home'" />
-        <ContentWrapper v-else />
-    </section>
-    <Footer />
+    <div class="flex flex-col h-screen">
+        <Header />
+        <section class="flex mb-auto">
+            <div v-if="page.isNotFound" class="underline">404 Not Found</div>
+            <Home v-if="frontmatter.layout === 'home'" />
+            <ContentWrapper v-else />
+        </section>
+        <Footer />
+    </div>
 </template>
 
 <style>
