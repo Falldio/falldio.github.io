@@ -17,7 +17,7 @@ const hero = ref(frontmatter.value.hero);
             </div>
         </div>
         <div class="latest-posts py-8" v-if="posts.length">
-            <h2 class="text-2xl font-semibold">Latest Posts...</h2>
+            <h2 class="text-2xl font-semibold">Why do you write like you needed it to survive...</h2>
             <div class="homecard-container grid grid-cols-3 gap-4 my-4">
                 <HomeCard v-for="post in posts" :key="post.title" :title="post.title" :date="post.date"
                     :url="post.url" />

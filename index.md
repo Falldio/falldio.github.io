@@ -6,8 +6,7 @@ hero:
   name: "YoloKokura"
   img: "yolokokura.png"
   intro: 
-    - "Hey👋I'm a student at Wuhan University. I like Golang, Stoicism and Dostoevsky. I'm going to work at Sangfor as a backend developer soon. I hope I can establish my own company one day!"
-    - "Here I share my thoughts weekly, mostly about books I read and posts about Golang and distribution systems."
-
-
+    - "嘿！我是个音乐剧迷🎼、书虫📘兼爱猫人士🐈，这儿是我的赛博空间自留地。"
+    - "我目前在深圳实习，在摸鱼的时候我会学学日语🎏，读读老陀🪆。"
+    - "我会在这里周更自己关于分布式系统和Golang的学习心得（说是笔记应该更合适吧😅）"
 ---
