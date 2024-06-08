@@ -21,8 +21,8 @@ summary: 这里记录我的近况，一方面希望以此提醒自己，一方�
 ## 我在听
 
 - [宇多田光](https://www.utadahikaru.jp/en/)：Can you give me one last kiss 😭😭😭
-- Wherever You Are By ONE OK ROCK
+- Wherever You Are By [ONE OK ROCK](https://www.oneokrock.com/en/)
 
 ## Misc
 
-- 想想毕业旅居的意义
+- 考虑河南山西之旅
