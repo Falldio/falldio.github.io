@@ -41,7 +41,7 @@ let showMenu = ref(false);
                                 class="absolute top-12 right-0 z-10 w-48 py-2 bg-white border border-slate-900/10 rounded-md shadow-lg"
                                 @click="showMenu = false">
                                 <a v-for="item in nav" :key="item.text" :href="item.link"
-                                    class="block px-4 py-2 text-sm">
+                                    class="block font-semibold text-black px-4 py-2 text-sm">
                                     {{ item.text }}
                                 </a>
                             </div>
