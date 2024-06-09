@@ -29,7 +29,7 @@ let showMenu = ref(false);
                         <!-- navigation menu for mobile hidden when screen is larger than md -->
                         <div class="relative lg:max-2xl:hidden">
                             <button
-                                class="flex items-center justify-center w-10 h-10 rounded-md text-slate-900 dark:bg-slate-100 dark:text-slate-900"
+                                class="flex items-center justify-center w-10 h-10 rounded-md text-slate-900"
                                 @click="showMenu = !showMenu">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@ let showMenu = ref(false);
                                 class="absolute top-12 right-0 z-10 w-48 py-2 bg-white border border-slate-900/10 rounded-md shadow-lg"
                                 @click="showMenu = false">
                                 <a v-for="item in nav" :key="item.text" :href="item.link"
-                                    class="block px-4 py-2 text-sm text-slate-900 dark:text-slate-200 hover:bg-slate-900/10 dark:hover:bg-slate-100">
+                                    class="block px-4 py-2 text-sm">
                                     {{ item.text }}
                                 </a>
                             </div>
