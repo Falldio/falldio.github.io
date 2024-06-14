@@ -1,7 +1,7 @@
 ---
 title: Now!
 layout: now
-date: 2024-6-5
+date: 2024-6-14
 summary: 这里记录我的近况，一方面希望以此提醒自己，一方面可能对读者有帮助。
 ---
 
@@ -24,5 +24,3 @@ summary: 这里记录我的近况，一方面希望以此提醒自己，一方�
 - Wherever You Are By [ONE OK ROCK](https://www.oneokrock.com/en/)
 
 ## Misc
-
-- 考虑河南山西之旅
