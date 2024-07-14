@@ -23,13 +23,12 @@ let showMenu = ref(false);
                             <li v-for="item in nav" :key="item.text">
                                 <a :href="item.link" class="hover:text-slate-900 dark:hover:text-slate-100 text-xl">{{
                                     item.text
-                                }}</a>
+                                    }}</a>
                             </li>
                         </ul>
                         <!-- navigation menu for mobile hidden when screen is larger than md -->
-                        <div class="relative lg:max-2xl:hidden">
-                            <button
-                                class="flex items-center justify-center w-10 h-10 rounded-md text-slate-900"
+                        <div class="relative md:hidden">
+                            <button class="flex items-center justify-center w-10 h-10 rounded-md text-slate-900"
                                 @click="showMenu = !showMenu">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
