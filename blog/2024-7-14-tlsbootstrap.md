@@ -1,5 +1,5 @@
 ---
-title: 如何实现kube-apiserver与kubelt的安全通信？
+title: 如何实现kube-apiserver与kubelet的安全通信？
 date: 2024-7-14
 author: Falldio
 location: 深圳
