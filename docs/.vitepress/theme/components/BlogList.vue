@@ -9,7 +9,7 @@ const title = ref('');
 const posts = ref([]);
 watchEffect(() => {
     let tag = params.value.tag;
-    title.value = tag !== 'all' ? `Posts tagged with ${tag}` : 'All Posts';
+    title.value = tag !== 'all' ? `Posts tagged with ${tag}` : `All Posts: ${allPosts.length}`;
     posts.value = tag !== 'all' ? tags[tag] : allPosts;
 });
 </script>
