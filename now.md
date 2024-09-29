@@ -1,12 +1,13 @@
 ---
 title: Now!
 layout: now
-date: 2024-9-21
+date: 2024-9-29
 summary: 这里记录我的近况，一方面希望以此提醒自己，一方面可能对读者有帮助。
 ---
 
 ## 我在看
 
+- [富大龙](https://weibo.com/u/2450372181?tabtype=home)
 - [菊长恰饭](https://space.bilibili.com/8090155?spm_id_from=333.337.0.0)
 
 ## 我在读
