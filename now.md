@@ -1,7 +1,7 @@
 ---
 title: Now!
 layout: now
-date: 2024-10-1
+date: 2024-10-3
 summary: 这里记录我的近况，一方面希望以此提醒自己，一方面可能对读者有帮助。
 ---
 
@@ -12,6 +12,7 @@ summary: 这里记录我的近况，一方面希望以此提醒自己，一方�
 
 ## 我在读
 
+- [张近微](https://www.zhihu.com/topic/21264978/hot)
 - [Everything You Always Wanted To Know About Mathematics](https://www.math.cmu.edu/~jmackey/151_128/bws_book.pdf)
 - [The Federalist Papers](https://book.douban.com/subject/1498963/)
 - [编译原理](https://book.douban.com/subject/5416783/)
