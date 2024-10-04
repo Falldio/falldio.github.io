@@ -1,7 +1,7 @@
 ---
 title: Now!
 layout: now
-date: 2024-10-3
+date: 2024-10-4
 summary: 这里记录我的近况，一方面希望以此提醒自己，一方面可能对读者有帮助。
 ---
 
@@ -12,13 +12,14 @@ summary: 这里记录我的近况，一方面希望以此提醒自己，一方�
 
 ## 我在读
 
-- [张近微](https://www.zhihu.com/topic/21264978/hot)
+- [张近微](https://www.zhihu.com/topic/21264978/hot)：我最深的羞耻是我仍然在乎别人的评价，即使我已养成了不可谓不成熟，不可谓不复杂的思想方式，但我的情感仍是凡胎的低等，不能离开他人的凡胎之爱而存活。如今我的坚忍过人之处，是我承认了我的卑弱，我不能克制被爱与同情之幻望，正如我无法摆脱我饮食的需要一样。我未曾与世界和解，世界也未曾拥我入怀。
 - [Everything You Always Wanted To Know About Mathematics](https://www.math.cmu.edu/~jmackey/151_128/bws_book.pdf)
 - [The Federalist Papers](https://book.douban.com/subject/1498963/)
 - [编译原理](https://book.douban.com/subject/5416783/)
 - [必有人重写爱情](https://book.douban.com/subject/35817787/)
 - [明朝那些事儿](https://book.douban.com/subject/3674537/?_dtcc=1)
 - [她厌男，她是我女友](https://book.douban.com/subject/36256156/)
+- [投资学](https://book.douban.com/subject/27159606/)
 
 ## 我在听
 
