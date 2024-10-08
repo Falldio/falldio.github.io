@@ -1,25 +1,28 @@
 ---
 title: Now!
 layout: now
-date: 2024-10-4
+date: 2024-10-8
 summary: 这里记录我的近况，一方面希望以此提醒自己，一方面可能对读者有帮助。
 ---
 
 ## 我在看
 
-- [富大龙](https://weibo.com/u/2450372181?tabtype=home)：人们总说我谦虚，其实我从不客套。正确的艺术观是人生观。在人类古代史上我从没见过你们说的那种光明美惠的帝王。士可杀、绝不演。（除了玉皇大帝）。我演秦王枕边课外书是「我的奋斗」「素书」「荒野的呼唤」「狼图腾」还有一些人间最卑鄙的学问。
+- [富大龙](https://weibo.com/u/2450372181?tabtype=home)
 - [菊长恰饭](https://space.bilibili.com/8090155?spm_id_from=333.337.0.0)
+- [重启人生](https://movie.douban.com/subject/36156235/)
 
 ## 我在读
 
-- [张近微](https://www.zhihu.com/topic/21264978/hot)：我最深的羞耻是我仍然在乎别人的评价，即使我已养成了不可谓不成熟，不可谓不复杂的思想方式，但我的情感仍是凡胎的低等，不能离开他人的凡胎之爱而存活。如今我的坚忍过人之处，是我承认了我的卑弱，我不能克制被爱与同情之幻望，正如我无法摆脱我饮食的需要一样。我未曾与世界和解，世界也未曾拥我入怀。
+- [张近微](https://www.zhihu.com/topic/21264978/hot)
 - [Everything You Always Wanted To Know About Mathematics](https://www.math.cmu.edu/~jmackey/151_128/bws_book.pdf)
 - [The Federalist Papers](https://book.douban.com/subject/1498963/)
 - [编译原理](https://book.douban.com/subject/5416783/)
 - [必有人重写爱情](https://book.douban.com/subject/35817787/)
-- [明朝那些事儿](https://book.douban.com/subject/3674537/?_dtcc=1)
-- [她厌男，她是我女友](https://book.douban.com/subject/36256156/)
 - [投资学](https://book.douban.com/subject/27159606/)
+- [经史百家杂钞](https://book.douban.com/subject/30363617/)
+- [Outliers](https://book.douban.com/subject/3134517/)
+- [Your Money Or Your Life](https://book.douban.com/subject/3306520/)
+- [How to Win Friends and Influence People in the Digital Age](https://book.douban.com/subject/11590373/)
 
 ## 我在听
 
