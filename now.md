@@ -1,7 +1,7 @@
 ---
 title: Now!
 layout: now
-date: 2024-10-8
+date: 2024-10-27
 summary: 这里记录我的近况，一方面希望以此提醒自己，一方面可能对读者有帮助。
 ---
 
@@ -9,20 +9,16 @@ summary: 这里记录我的近况，一方面希望以此提醒自己，一方�
 
 - [富大龙](https://weibo.com/u/2450372181?tabtype=home)
 - [菊长恰饭](https://space.bilibili.com/8090155?spm_id_from=333.337.0.0)
-- [重启人生](https://movie.douban.com/subject/36156235/)
+- [葬送的芙莉莲](https://www.bilibili.com/bangumi/media/md21087073)
 
 ## 我在读
 
 - [张近微](https://www.zhihu.com/topic/21264978/hot)
 - [Everything You Always Wanted To Know About Mathematics](https://www.math.cmu.edu/~jmackey/151_128/bws_book.pdf)
 - [The Federalist Papers](https://book.douban.com/subject/1498963/)
-- [编译原理](https://book.douban.com/subject/5416783/)
-- [必有人重写爱情](https://book.douban.com/subject/35817787/)
 - [投资学](https://book.douban.com/subject/27159606/)
 - [经史百家杂钞](https://book.douban.com/subject/30363617/)
 - [Outliers](https://book.douban.com/subject/3134517/)
-- [Your Money Or Your Life](https://book.douban.com/subject/3306520/)
-- [How to Win Friends and Influence People in the Digital Age](https://book.douban.com/subject/11590373/)
 
 ## 我在听
 
