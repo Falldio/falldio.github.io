@@ -39,12 +39,12 @@ jobs:
         with:
           node-version: 20
           cache: npm # or pnpm / yarn
-      - name: Remove node_modules and package-lock.json
-        run: |
-          rm -rf node_modules
-          rm -f package-lock.json
-      - name: Install dependencies
-        run: npm install
+      # - name: Remove node_modules and package-lock.json
+      #   run: |
+      #     rm -rf node_modules
+      #     rm -f package-lock.json
+      # - name: Install dependencies
+      #   run: npm install
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
