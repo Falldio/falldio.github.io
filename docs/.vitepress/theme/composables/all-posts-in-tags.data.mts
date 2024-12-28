@@ -16,7 +16,7 @@ interface Tags {
 declare const data: Tags;
 export { data };
 
-export default createContentLoader(["../blog/*.md", "../blog/*/*.md"], {
+export default createContentLoader(["./blog/*.md", "./blog/*/*.md"], {
   excerpt: true,
   transform(mds): Tags {
     const tags: Tags = {};

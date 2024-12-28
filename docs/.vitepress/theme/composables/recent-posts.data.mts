@@ -10,7 +10,7 @@ interface Post {
 declare const data: Post[];
 export { data };
 
-export default createContentLoader(["../blog/*.md", "../blog/*/*.md"], {
+export default createContentLoader(["./blog/*.md", "./blog/*/*.md"], {
   transform(mds): Post[] {
     return mds
       .map((md) => {
