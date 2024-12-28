@@ -1,7 +1,7 @@
 ---
 title: Now!
 layout: now
-date: 2024-11-3
+date: 2024-12-28
 summary: 这里记录我的近况，一方面希望以此提醒自己，一方面可能对读者有帮助。
 ---
 
@@ -13,11 +13,9 @@ summary: 这里记录我的近况，一方面希望以此提醒自己，一方�
 ## 我在读
 
 - [张近微](https://www.zhihu.com/topic/21264978/hot)
-- [Everything You Always Wanted To Know About Mathematics](https://www.math.cmu.edu/~jmackey/151_128/bws_book.pdf)
-- [The Federalist Papers](https://book.douban.com/subject/1498963/)
 - [投资学](https://book.douban.com/subject/27159606/)
-- [经史百家杂钞](https://book.douban.com/subject/30363617/)
-- [Outliers](https://book.douban.com/subject/3134517/)
+- [“山中”的六朝史](https://book.douban.com/subject/34712156/?_dtcc=1)
+- [筚路维艰：中国社会主义路径的五次选择](https://book.douban.com/subject/26171466/)
 
 ## 我在听
 
