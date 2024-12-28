@@ -8,7 +8,7 @@ import TagButton from './TagButton.vue';
         <div class="page-header py-10 border-dashed border-b w-4/5 max-md:w-full">
             <h1 class="text-4xl font-bold">{{ addSpaceBetweenCharacters($frontmatter.title) }}</h1>
             <div class="blog-meta text-gray-500 mt-5 flex gap-4">
-                <time :datetime="$frontmatter.date">{{ $frontmatter.date }}</time>
+                <time :datetime="$frontmatter.date">{{ new Date($frontmatter.date).toDateString() }}</time>
                 <span v-if="$frontmatter.author !== undefined">{{ $frontmatter.author }}</span>
                 <span v-if="$frontmatter.location !== undefined">{{ $frontmatter.location }}</span>
             </div>
