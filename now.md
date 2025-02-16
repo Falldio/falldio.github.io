@@ -7,13 +7,13 @@ summary: 这里记录我的近况，一方面希望以此提醒自己，一方�
 
 ## 我在看
 
-- [富大龙](https://weibo.com/u/2450372181?tabtype=home)
+- [富大龙](https://weibo.com/u/2450372181?tabtype=home)：[天狗](https://movie.douban.com/subject/1947270/)、[紫日](https://movie.douban.com/subject/1308078/)。
 - [菊长恰饭](https://space.bilibili.com/8090155?spm_id_from=333.337.0.0)
 - [CS50](https://www.youtube.com/@cs50)
 
 ## 我在读
 
-- [张近微](https://www.zhihu.com/topic/21264978/hot)
+- [张近微](https://www.zhihu.com/topic/21264978/hot)：《我未曾与世界和解》、《翡冷翠没有诗的夏天》、读书笔记。
 - [投资学](https://book.douban.com/subject/27159606/)
 - [少年](https://book.douban.com/subject/25887925/)
 - [Jane Eyre](https://book.douban.com/subject/1418242/)
