@@ -18,7 +18,7 @@ summary: 这里记录我的近况，一方面希望以此提醒自己，一方�
 - [少年](https://book.douban.com/subject/25887925/)
 - [Jane Eyre](https://book.douban.com/subject/1418242/)
 - [The Personal MBA : Master the Art of Business](https://book.douban.com/subject/5412254/)
-- [TCP/IP详解 卷1：协议（原书第2版） : 卷1：协议](https://book.douban.com/subject/26825411/)
+- [TCP/IP详解 卷1：协议（原书第2版）](https://book.douban.com/subject/26825411/)
 - [经史百家杂钞 : 全八册](https://book.douban.com/subject/30363617/)
 - [The Federalist Papers](https://book.douban.com/subject/1498963/)
 
