@@ -1,7 +1,7 @@
 ---
 title: Now!
 layout: now
-date: 2025-2-16
+date: 2025-3-25
 summary: 这里记录我的近况，一方面希望以此提醒自己，一方面可能对读者有帮助。
 ---
 
@@ -9,7 +9,7 @@ summary: 这里记录我的近况，一方面希望以此提醒自己，一方�
 
 - [富大龙](https://weibo.com/u/2450372181?tabtype=home)：[天狗](https://movie.douban.com/subject/1947270/)、[紫日](https://movie.douban.com/subject/1308078/)。
 - [菊长恰饭](https://space.bilibili.com/8090155?spm_id_from=333.337.0.0)
-- [CS50](https://www.youtube.com/@cs50)
+- [区块链技术与应用](https://www.bilibili.com/video/BV1Vt411X7JF/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&vd_source=158fcb5e91ac0542b6f2ceb3b5d19d20)
 
 ## 我在读
 
@@ -17,10 +17,10 @@ summary: 这里记录我的近况，一方面希望以此提醒自己，一方�
 - [投资学](https://book.douban.com/subject/27159606/)
 - [少年](https://book.douban.com/subject/25887925/)
 - [Jane Eyre](https://book.douban.com/subject/1418242/)
-- [The Personal MBA : Master the Art of Business](https://book.douban.com/subject/5412254/)
-- [TCP/IP详解 卷1：协议（原书第2版）](https://book.douban.com/subject/26825411/)
 - [经史百家杂钞 : 全八册](https://book.douban.com/subject/30363617/)
 - [The Federalist Papers](https://book.douban.com/subject/1498963/)
+- [Designing Data-Intensive Applications](https://book.douban.com/subject/26197294/)
+- [TCP/IP详解 卷2：实现](https://book.douban.com/subject/30875220/)
 
 ## 我在听
 
