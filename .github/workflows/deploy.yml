@@ -48,7 +48,7 @@ jobs:
       - name: Install fonttools
         run: |
           python -m pip install --upgrade pip
-          python -m pip install "fonttools[brotli]"
+          python -m pip install fonttools brotli
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
