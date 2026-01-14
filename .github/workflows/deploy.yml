@@ -45,10 +45,65 @@ jobs:
           rm -f package-lock.json
       - name: Install dependencies
         run: npm install
+      - name: Install fonttools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "fonttools[brotli]"
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies
         run: npm ci # or pnpm install / yarn install / bun install
+      - name: Subset project fonts
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+          import pathlib
+          import subprocess
+
+          root = pathlib.Path(".")
+          exts = {".md", ".vue", ".ts", ".tsx", ".js", ".jsx", ".html", ".json", ".mdx", ".mts", ".css"}
+          chars: set[str] = set()
+
+          for p in root.rglob("*"):
+            if p.suffix in exts:
+              try:
+                text = p.read_text(encoding="utf-8")
+              except Exception:
+                continue
+              for ch in text:
+                if ch == " " or not ch.isspace():
+                  chars.add(ch)
+
+          fonts_dir = root / "docs/.vitepress/theme/fonts"
+          glyphs_file = fonts_dir / ".subset-glyphs.txt"
+          glyphs_file.write_text("".join(sorted(chars)) + "\n", encoding="utf-8")
+
+          font_paths = [
+            fonts_dir / "Literata-VariableFont_opsz,wght.ttf",
+            fonts_dir / "Literata-Italic-VariableFont_opsz,wght.ttf",
+          ]
+
+          for p in fonts_dir.glob("*.ttf"):
+            if "京華老宋体" in p.name:
+              font_paths.append(p)
+
+          for font_path in font_paths:
+            if not font_path.exists():
+              raise SystemExit(f"Font not found: {font_path}")
+            out_path = font_path.with_suffix(".woff2")
+            subprocess.run(
+              [
+                "pyftsubset",
+                str(font_path),
+                f"--output-file={out_path}",
+                f"--text-file={glyphs_file}",
+                "--layout-features=*",
+                "--no-hinting",
+                "--flavor=woff2",
+              ],
+              check=True,
+            )
+          PY
       - name: Build with VitePress
         run: npm run docs:build # or pnpm docs:build / yarn docs:build / bun run docs:build
       - name: Upload artifact

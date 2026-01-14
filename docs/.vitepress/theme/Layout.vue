@@ -23,13 +23,13 @@ const { page, frontmatter } = useData();
 /* @import url(custom.css); */
 @font-face {
     font-family: 'Jinghua';
-    src: url(./fonts/京華老宋体v1.007.ttf);
+    src: url(./fonts/京華老宋体v1.007.woff2) format("woff2");
 }
 
 @font-face {
     font-family: 'Literata';
-    src: url(./fonts/Literata-VariableFont_opsz,wght.ttf),
-        url(./fonts/Literata-Italic-VariableFont_opsz,wght.ttf);
+    src: url(./fonts/Literata-VariableFont_opsz,wght.woff2) format("woff2"),
+        url(./fonts/Literata-Italic-VariableFont_opsz,wght.woff2) format("woff2");
 }
 
 body {
