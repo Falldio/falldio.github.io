@@ -5,7 +5,7 @@ interface Item {
   cover: string
   link: string
   comment: string
-  type: 'Book' | 'Movie' | 'Musical' | 'Song' | 'TV show'
+  type: 'Book' | 'Movie' | 'Musical' | 'Song' | 'TV show' | 'Game'
 }
 
 const items: Item[] = [
@@ -35,11 +35,19 @@ const items: Item[] = [
   },
   {
     title: '白い巨塔',
-    author: ' 西谷弘 / 河野圭太 / 村上正典 / 岩田和行',
+    author: '西谷弘 / 河野圭太 / 村上正典 / 岩田和行',
     cover: '/images/whitetower.png',
     link: 'https://movie.douban.com/subject/2150220/',
     comment: 'Amazing Grace, how sweet the sound. That saved a wretch like me. I once was lost but now I\'m found, Was blind but now I see.',
     type: 'TV show'
+  },
+  {
+    title: 'Final Fantasy XV',
+    author: '野村哲也 / 田畑端',
+    cover: '/images/ff15.jpg',
+    link: 'https://www.square-enix-games.com/en_US/games/final-fantasy-xv',
+    comment: '十年水晶梦，王子复仇记。',
+    type: 'Game'
   },
 ]
 </script>
