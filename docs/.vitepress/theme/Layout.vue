@@ -1,39 +1,23 @@
-<script setup>
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
-import Home from './components/Home.vue';
-import ContentWrapper from './components/ContentWrapper.vue';
-import { useData } from 'vitepress';
+<script setup lang="ts">
+import { computed } from "vue";
+import { useData } from "vitepress";
+import DefaultLayout from "./components/DefaultLayout.vue";
+import HomeView from "./components/HomeView.vue";
+import ContentWrapper from "./components/ContentWrapper.vue";
+import PostLayout from "./components/PostLayout.vue";
+
 const { page, frontmatter } = useData();
+const layoutName = computed(() => frontmatter.value.layout ?? "default");
 </script>
 
 <template>
-    <div class="flex flex-col h-screen">
-        <Header />
-        <section class="flex mb-auto">
-            <div v-if="page.isNotFound" class="underline">404 Not Found</div>
-            <Home v-if="frontmatter.layout === 'home'" />
-            <ContentWrapper v-else />
-        </section>
-        <Footer />
+  <DefaultLayout>
+    <div v-if="page.isNotFound" class="container py-16">
+      <h1 class="text-3xl font-semibold">404</h1>
+      <p class="mt-3 text-text-muted">The page you are looking for does not exist.</p>
     </div>
+    <HomeView v-else-if="layoutName === 'home'" />
+    <PostLayout v-else-if="layoutName === 'blog'" />
+    <ContentWrapper v-else />
+  </DefaultLayout>
 </template>
-
-<style>
-/* @import url(custom.css); */
-@font-face {
-    font-family: 'Jinghua';
-    src: url(./fonts/京華老宋体v1.007.woff2) format("woff2");
-}
-
-@font-face {
-    font-family: 'Literata';
-    src: url(./fonts/Literata-VariableFont_opsz,wght.woff2) format("woff2"),
-        url(./fonts/Literata-Italic-VariableFont_opsz,wght.woff2) format("woff2");
-}
-
-body {
-    background-color: var(--kokura-bg);
-    font-family: 'Literata', 'Jinghua', serif;
-}
-</style>
