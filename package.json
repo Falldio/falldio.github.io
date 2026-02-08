@@ -18,6 +18,7 @@
   "dependencies": {
     "@types/node": "^20.11.30",
     "markdown-it-container": "^4.0.0",
+    "markdown-it-pangu": "^1.0.2",
     "markdown-yaml-metadata-parser": "^3.0.0",
     "typescript": "^5.7.2",
     "vue-router": "^4.3.0"
