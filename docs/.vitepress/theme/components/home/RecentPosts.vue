@@ -5,7 +5,7 @@ import { data as recentPosts } from "../../composables/recent-posts.data";
 <template>
   <section class="mx-auto max-w-5xl">
     <div class="mb-5 flex items-end justify-between gap-4">
-      <h2 class="blog-title text-2xl md:text-3xl">Recent Writings</h2>
+      <h2 class="blog-title text-2xl md:text-3xl">Why do you  write like you needed it to survive?</h2>
       <a href="/all-tag" class="text-sm text-text-muted hover:text-text-main">Browse all</a>
     </div>
     <div class="grid gap-4 md:grid-cols-3">
